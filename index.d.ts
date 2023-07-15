@@ -107,9 +107,11 @@ declare module wavefile {
      * @param {boolean=} [interleaved=false] True to return interleaved samples,
      *   false to return the samples de-interleaved.
      * @param {Function=} [OutputObject=Float64Array] The sample container.
-     * @return {!(Array|TypedArray)} the samples.
+     * @return {(Float64Array|Array<Float64Array>)} The samples. Returns a single Float64Array if
+     *   interleaved is false or not provided, and an array of Float64Arrays (one for each channel)
+     *   if interleaved is true.
      */
-    getSamples(interleaved?:boolean, OutputObject?: Function): Float64Array;
+    getSamples(interleaved?:boolean, OutputObject?: Function): Float64Array | Float64Array[];
 
     /**
      * Return the sample at a given index.
